@@ -16,9 +16,11 @@
       <tr>
         <td><%= submission.title %></td>
         <td><%= submission.url %></td>
-        <td><%= link_to 'Show', submission %></td>
-        <td><%= link_to 'Edit', edit_submission_path(submission) %></td>
-        <td><%= link_to 'Destroy', submission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if submission.user == current_user %>
+          <td><%= link_to 'Show', submission %></td>
+          <td><%= link_to 'Edit', edit_submission_path(submission) %></td>
+          <td><%= link_to 'Destroy', submission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +28,3 @@
 
 <br>
 
-<%= link_to 'New Submission', new_submission_path %>
